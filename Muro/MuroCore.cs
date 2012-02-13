@@ -12,14 +12,17 @@ namespace Muro
 {
     public class MuroCore
     {
-        private IKernel _kernel;
-        private IBurroCore _parser;
+        private readonly IKernel _kernel;
+        private readonly IBurroCore _parser;
 
         public MuroCore(IKernel kernel, IBurroCore parser)
         {
             _kernel = kernel;
             _parser = parser;
+            PipelineReports = new Dictionary<string, PipelineReport>();
         }
+
+        public IDictionary<string, PipelineReport> PipelineReports { get; private set; }
 
         public void Initialise()
         {
@@ -105,7 +108,10 @@ namespace Muro
 
         private void HandlePipelineUpdate(IEnumerable<PipelineReport> update)
         {
-           
+            foreach (var pipelineReport in update)
+            {
+                PipelineReports[pipelineReport.Name] = pipelineReport;
+            }
         }
     }
 }

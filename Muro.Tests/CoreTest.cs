@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using Burro;
+using Burro.BuildServers;
 using Moq;
 using NUnit.Framework;
 using Ninject;
@@ -16,6 +17,11 @@ namespace Muro.Tests
     {
         private IKernel _kernel;
         private Mock<IBurroCore> _burro;
+
+        private PipelineReport SUCCESSFUL_IDLE_PIPELINE = new PipelineReport() { Name = "A", BuildState = BuildState.Success, Activity = Activity.Idle };
+        private PipelineReport FAILED_IDLE_PIPELINE = new PipelineReport() { Name = "B", BuildState = BuildState.Failure, Activity = Activity.Idle };
+        private PipelineReport SUCCESSFUL_BUILDING_PIPELINE = new PipelineReport() { Name = "C", BuildState = BuildState.Success, Activity = Activity.Busy };
+        private PipelineReport FAILED_BUILDING_PIPELINE = new PipelineReport() { Name = "D", BuildState = BuildState.Failure, Activity = Activity.Busy };
 
         private const string DEFAULT_CONFIG_FILE = "./muro.yml";
 
@@ -86,6 +92,34 @@ namespace Muro.Tests
             core.Initialise();
 
             _burro.Verify(b => b.StartMonitoring(), Times.Once());
+        }
+
+        [Test]
+        public void ReportsMergedAndExposedOnCore()
+        {
+            var core = _kernel.Get<MuroCore>();
+
+            var bs1 = new Mock<IBuildServer>();
+            var bs2 = new Mock<IBuildServer>();
+            var buildServers = new List<Mock<IBuildServer>>() { bs1, bs2 };
+
+            _burro.Setup(b => b.BuildServers).Returns(new List<IBuildServer>(buildServers.Select(bs => bs.Object)));
+
+            core.Initialise();
+
+            bs1.Raise(b => b.PipelinesUpdated += null, new List<PipelineReport> {SUCCESSFUL_IDLE_PIPELINE});
+            Assert.AreEqual(1, core.PipelineReports.Count());
+            bs2.Raise(b => b.PipelinesUpdated += null, new List<PipelineReport> { FAILED_IDLE_PIPELINE });
+            Assert.AreEqual(2, core.PipelineReports.Count());
+            var nowFailed = new PipelineReport()
+                                {
+                                    Activity = FAILED_IDLE_PIPELINE.Activity,
+                                    BuildState = FAILED_IDLE_PIPELINE.BuildState,
+                                    Name = SUCCESSFUL_IDLE_PIPELINE.Name
+                                };
+            bs1.Raise(b => b.PipelinesUpdated += null, new List<PipelineReport> {nowFailed});
+            Assert.AreEqual(2, core.PipelineReports.Count());
+            Assert.IsTrue(core.PipelineReports.All(pr => pr.Value.BuildState == BuildState.Failure));
         }
     }
 }
