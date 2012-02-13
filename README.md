@@ -8,7 +8,7 @@ Why not?  I've toyed with a couple of different tools, written in Scala and Ruby
 
 Surely this exists?
 ===================
-If it does, Google is having trouble finding it at of the 18th of September 2011.  I've used Greenscreen (Ruby) and BigVisibleWall (Scala) but wanted a .NET version to tie in with the USB library I'd written, [NUSB](https://github.com/thenathanjones/nusb).
+If it does, Google is having trouble finding it at of the 18th of September 2011.  I've used Greenscreen (Ruby) and BigVisibleWall (Scala) but wanted a .NET version to tie in with the parsing library I'd written, [Burro](https://github.com/thenathanjones/burro).
 
 How do I use this?
 ==================
@@ -17,10 +17,10 @@ Pre-requisites
 I've built Muro as a .NET 4 project, so the runtime will need to be installed.
 Configuration
 -------------
-On startup, Luces will look for a configuration file in the installed directory called "muro.yml".  If one isn't present, it will create one with a sample configuration and close.  You may supply the full path to an alternative config file as an argument to the service. 
+On startup, Muro will look for a configuration file in the installed directory called "muro.yml".  If one isn't present, it will create one with a sample configuration and close.  You may supply the full path to an alternative config file as an argument to the service. 
 Here is an example config:
 
-     # Configuration file for Muro build light tool
+     # Configuration file for Muro build monitoring tool
      -
        servertype: CruiseControl
        url: http://10.1.1.2:8153/go/cctray.xml
