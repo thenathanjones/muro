@@ -57,7 +57,7 @@ namespace Muro
 
             ConfigureBindings();
 
-            _host = new NancyHost(new Uri("http://localhost:12345"));
+            _host = new NancyHost(new Uri("http://localhost:4567"));
             _host.Start();
 
             _core = _kernel.Get<IMuroCore>();
