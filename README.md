@@ -8,7 +8,7 @@ Why not?  I've toyed with a couple of different tools, written in Scala and Ruby
 
 Surely this exists?
 ===================
-If it does, Google is having trouble finding it at of the 18th of September 2011.  I've used Greenscreen (Ruby) and BigVisibleWall (Scala) but wanted a .NET version to tie in with the parsing library I'd written, [Burro](https://github.com/thenathanjones/burro).
+If it does, Google is having trouble finding it at of the 18th of September 2011.  I've used greenscreen.rb (Ruby) and BigVisibleWall (Scala) but wanted a .NET version to tie in with the parsing library I'd written, [Burro](https://github.com/thenathanjones/burro).
 
 How do I use this?
 ==================
