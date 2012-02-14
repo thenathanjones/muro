@@ -1,0 +1,27 @@
+﻿<html>
+    <head>
+        <title>Muro</title>
+        <link rel='stylesheet' href='../Content/Stylesheets/Styles.css' type='text/css' media="screen">	
+		<meta http-equiv="refresh" content="15" />
+  
+        <style type="text/css">
+            .status {
+                width: @(100/Model.Dimensions["Columns"])%;
+                height: @(100/Model.Dimensions["Rows"])%;
+            }
+            h1 {
+                margin-top: @(50/Model.Dimensions["Rows"])px;
+                font-size:  @(140/Model.Dimensions["Rows"])px;
+            }
+        </style>
+    </head>
+    <body>
+        @foreach(var pipeline in Model.Pipelines) {
+        <div class="status @pipeline.BuildState @pipeline.Activity" >
+            <div class="border">
+                <h1>@pipeline.Name</h1>
+            </div>
+        </div>
+		}
+    </body>
+</html>

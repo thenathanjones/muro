@@ -1,0 +1,70 @@
+﻿@font-face {
+    font-family: 'RobotoBold';
+    src: url('../Fonts/roboto-bold-webfont.eot');
+    src: url('../Fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../Fonts/roboto-bold-webfont.woff') format('woff'),
+         url('../Fonts/roboto-bold-webfont.ttf') format('truetype'),
+         url('../Fonts/roboto-bold-webfont.svg#') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	text-align: center;
+	font-size: small;
+	margin: 0;
+	font-family: RobotoBold, Helvetica, Arial, "Sans Serif";
+}
+
+div {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2em;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 120%;
+  line-height: 1.6em;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.clear {
+	border: none;
+	clear: both;
+}
+
+.status {
+	float: left;
+}
+
+.border {
+  height: 100%;
+  border: black 1px solid;
+}
+
+.success {
+	background-image: url("../Images/success.png");
+}
+
+.failure {
+	background-image: url("../Images/failure.png");
+}
+
+.unknown {
+	background-color: #999999;
+}
+
+.busy {
+	background-image: url("../Images/building.png");
+}

@@ -10,7 +10,15 @@ using Ninject;
 
 namespace Muro
 {
-    public class MuroCore
+    public interface IMuroCore
+    {
+        IDictionary<string, PipelineReport> PipelineReports { get; }
+        void Initialise(string s);
+        void Initialise();
+        void Shutdown();
+    }
+
+    public class MuroCore : IMuroCore
     {
         private readonly IKernel _kernel;
         private readonly IBurroCore _parser;
@@ -112,6 +120,11 @@ namespace Muro
             {
                 PipelineReports[pipelineReport.Name] = pipelineReport;
             }
+        }
+
+        public void Shutdown()
+        {
+            
         }
     }
 }
