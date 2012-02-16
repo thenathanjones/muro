@@ -14,6 +14,10 @@ body {
 	font-size: small;
 	margin: 0;
 	font-family: RobotoBold, Helvetica, Arial, "Sans Serif";
+	background-image: url("../Images/bg.png");
+	background-size: 100%;
+    color: white;
+    text-shadow: darkslategray 2px 2px 2px;
 }
 
 div {
@@ -22,7 +26,7 @@ div {
 }
 
 h1 {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   line-height: 1.2em;
 }
@@ -46,19 +50,50 @@ a {
 
 .status {
 	float: left;
+	background-size: 100%;
 }
 
 .border {
   height: 100%;
-  border: black 1px solid;
+  border: black 2px solid;
 }
 
-.success {
-	background-image: url("../Images/success.png");
+.success 
+{
+    background-color: #8aff36;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#46971d', endColorstr='#8aff36');
+	background-image: linear-gradient(left top, #46971d, #8aff36);
+    background-image: -o-linear-gradient(left top, #46971d,  #8aff36);
+    background-image: -moz-linear-gradient(left top, #46971d, #8aff36);
+    background-image: -webkit-linear-gradient(left top, #46971d, #8aff36);
+    background-image: -ms-linear-gradient(left top, #46971d, #8aff36);
+
+    background-image: -webkit-gradient(
+	    linear,
+	    left top,
+	    right bottom,
+	    color-stop(0.22, #46971d),
+	    color-stop(0.81, #8aff36)
+    );
 }
 
-.failure {
-	background-image: url("../Images/failure.png");
+.failure 
+{
+    background: #e70303;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e70303', endColorstr='#f25252');
+	background-image: linear-gradient(left top, #e70303, #f25252);
+    background-image: -o-linear-gradient(left top, #e70303,  #f25252);
+    background-image: -moz-linear-gradient(left top, #e70303, #f25252);
+    background-image: -webkit-linear-gradient(left top, #e70303, #f25252);
+    background-image: -ms-linear-gradient(left top, #e70303, #f25252);
+
+    background-image: -webkit-gradient(
+	    linear,
+	    left top,
+	    right bottom,
+	    color-stop(0.22, #e70303),
+	    color-stop(0.81, #f25252)
+    );
 }
 
 .unknown {
@@ -66,5 +101,19 @@ a {
 }
 
 .busy {
-	background-image: url("../Images/building.png");
+	background: #2544a8;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2544a8', endColorstr='#6785e7');
+	background-image: linear-gradient(left top, #2544a8, #6785e7);
+    background-image: -o-linear-gradient(left top, #2544a8,  #6785e7);
+    background-image: -moz-linear-gradient(left top, #2544a8, #6785e7);
+    background-image: -webkit-linear-gradient(left top, #2544a8, #6785e7);
+    background-image: -ms-linear-gradient(left top, #2544a8, #6785e7);
+
+    background-image: -webkit-gradient(
+	    linear,
+	    left top,
+	    right bottom,
+	    color-stop(0.22, #2544a8),
+	    color-stop(0.81, #6785e7)
+    );
 }
