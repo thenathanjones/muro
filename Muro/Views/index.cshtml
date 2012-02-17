@@ -10,8 +10,11 @@
                 height: @(100/Model.Dimensions["Rows"])%;
             }
             h1 {
-                margin-top: @(50/Model.Dimensions["Rows"])px;
+                margin-top: @(55/Model.Dimensions["Rows"])px;
                 font-size:  @(150/Model.Dimensions["Rows"])px;
+            }
+			h3 {
+                font-size:  @(80/Model.Dimensions["Rows"])px;
             }
         </style>
     </head>
@@ -20,6 +23,7 @@
         <div class="status @pipeline.BuildState @pipeline.Activity" >
             <div class="border">
                 <h1>@pipeline.Name</h1>
+				<h3>last build @pipeline.LastBuildTime</h3>
             </div>
         </div>
 		}

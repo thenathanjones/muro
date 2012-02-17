@@ -15,7 +15,7 @@ namespace Muro
             Get["/"] = parameters =>
                            {
                                var pipelines = core.PipelineReports.Values;
-                               var pipelineVM = new PipelineViewModel {Pipelines = pipelines};
+                               var pipelineVM = new PipelinesViewModel(pipelines);
                                return View["index", pipelineVM];
                            };
         }

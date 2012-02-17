@@ -57,11 +57,11 @@ namespace Muro.Tests.Models
             Assert.AreEqual(2, pipelineVM.Dimensions["Columns"]);
         }
 
-        private PipelineViewModel GenerateViewModel(int numberOfPipelines)
+        private PipelinesViewModel GenerateViewModel(int numberOfPipelines)
         {
             var pipelines = new int[numberOfPipelines].Select(s => new Mock<PipelineReport>().Object).ToArray();
 
-            return new PipelineViewModel() {Pipelines = pipelines};
+            return new PipelinesViewModel(pipelines);
         }
     }
 }

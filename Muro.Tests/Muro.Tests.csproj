@@ -80,6 +80,7 @@
       <DependentUpon>ProjectStatus.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\Steps\ProjectStatusSteps.cs" />
+    <Compile Include="Models\PipelineReportViewModelTest.cs" />
     <Compile Include="Models\PipelineViewModelTest.cs" />
     <Compile Include="MuroModuleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
