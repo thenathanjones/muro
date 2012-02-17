@@ -9,6 +9,23 @@
     font-style: normal;
 }
 
+@-webkit-keyframes ebb {
+	0% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-moz-keyframes ebb {
+	0% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}	
+
 body {
 	text-align: center;
 	font-size: small;
@@ -116,4 +133,15 @@ a {
 	    color-stop(0.22, #2544a8),
 	    color-stop(0.81, #6785e7)
     );
+    
+    -webkit-animation-name: ebb;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+	-moz-animation-name: ebb;
+	-moz-animation-duration: 1s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-direction: alternate;
+	-moz-animation-timing-function: ease-in-out;
 }

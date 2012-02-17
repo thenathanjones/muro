@@ -2,7 +2,7 @@
     <head>
         <title>Muro</title>
         <link rel='stylesheet' href='../Content/Stylesheets/Styles.css' type='text/css' media="screen">	
-		<meta http-equiv="refresh" content="10" />
+ 		<meta http-equiv="refresh" content="10" />
   
         <style type="text/css">
             .status {
@@ -20,7 +20,7 @@
     </head>
     <body>
         @foreach(var pipeline in Model.Pipelines) {
-        <div class="status @pipeline.BuildState @pipeline.Activity" >
+        <div class="status @pipeline.Activity @pipeline.BuildState" >
             <div class="border">
                 <h1>@pipeline.Name</h1>
 				<h3>last build @pipeline.LastBuildTime</h3>
