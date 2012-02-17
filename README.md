@@ -15,6 +15,12 @@ How do I use this?
 Pre-requisites
 --------------
 I've built Muro as a .NET 4 project, so the runtime will need to be installed.
+
+Installation
+------------
+Simplest way to get started is to grab the installer from [HERE](https://github.com/downloads/thenathanjones/muro/Muro-0.1.msi) which is the latest I've bothered to produce.
+Or, if you're feeling up for it, grab the whole lot and build it yourself.  The dependencies are managed by NuGet, and for the moment it's a .NET 4 project, although it's quite possible it will work on earlier versions of the framework.
+
 Configuration
 -------------
 On startup, Muro will look for a configuration file in the installed directory called "muro.yml".  If one isn't present, it will create one with a sample configuration and close.  You may supply the full path to an alternative config file as an argument to the service. 
@@ -42,3 +48,5 @@ Fire up a web browser, and browse to port 4567.  Make the browser full screen an
 Limitations
 ===========
 The types of build servers supported are again limited by whatever [Burro](https://github.com/thenathanjones/burro) is capable of, and as such check that project for what you can use.
+It currently only works correctly in Firefox, Chrome and Safari.  I'll get around to fixing IE later, for the moment just install a real browser.
+It currently uses a simple timed refresh.  If Muro is stopped at any point, the browser will need to be refreshed.
