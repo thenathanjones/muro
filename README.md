@@ -1,6 +1,8 @@
 What is it?
 ===========
-Muro is a .NET build monitoring tool that is accessible via a web browser.  
+Muro is a .NET build monitoring tool that is accessible via a web browser.  Use it on a large monitor where the project team sits to provide visibility on the status of builds on your continuous integration server.
+
+![](https://lh5.googleusercontent.com/-lNpmRyGmONw/T0Ax43OFbQI/AAAAAAAABOg/xn9Cs15O7b0/s640/screenshot.jpg)
 
 Why do this?
 ============
