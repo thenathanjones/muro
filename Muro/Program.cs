@@ -58,7 +58,8 @@ namespace Muro
 
             ConfigureBindings();
 
-            _host = new NancyHost(HostnameUtil.GetUriParams(4567));
+            var boundUris = HostnameUtil.GetUriParams(4567);
+            _host = new NancyHost(boundUris);
             _host.Start();
 
             _core = _kernel.Get<IMuroCore>();

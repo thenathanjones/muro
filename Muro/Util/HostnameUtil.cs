@@ -12,27 +12,26 @@ namespace Muro.Util
         public static Uri[] GetUriParams(int port)
         {
             var uriParams = new List<Uri>();
-            var hostName = Dns.GetHostName();
 
             CreateUriForHostname(port, uriParams);
 
-            CreateUrisForIPs(uriParams, hostName);
+            CreateUrisForIPs(port, uriParams);
 
             uriParams.Add(new Uri(string.Format("http://localhost:{0}", port)));
 
             return uriParams.ToArray();
         }
 
-        private static void CreateUrisForIPs(List<Uri> uriParams, string hostName)
+        private static void CreateUrisForIPs(int port, IList<Uri> uriParams)
         {
-            var hostEntry = Dns.GetHostEntry(hostName);
+            var hostEntry = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ipAddress in hostEntry.AddressList)
             {
                 if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
                 {
                     var addressBytes = ipAddress.GetAddressBytes();
                     var hostAddressUri = string.Format("http://{0}.{1}.{2}.{3}:{4}", addressBytes[0], addressBytes[1],
-                                                       addressBytes[2], addressBytes[3], 0);
+                                                       addressBytes[2], addressBytes[3], port);
                     uriParams.Add(new Uri(hostAddressUri));
                 }
             }
