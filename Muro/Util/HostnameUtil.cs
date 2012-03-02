@@ -41,7 +41,7 @@ namespace Muro.Util
         private static void CreateUriForHostname(int port, IList<Uri> uriParams)
         {
             var hostNameUri = string.Format("http://{0}:{1}", Dns.GetHostName(), port);
-            uriParams.Add(new Uri("hostNameUri"));
+            uriParams.Add(new Uri(hostNameUri));
         }
     }
 }
