@@ -20,7 +20,7 @@ I've built Muro as a .NET 4 project, so the runtime will need to be installed.
 
 Installation
 ------------
-Simplest way to get started is to grab the installer from [HERE](https://github.com/downloads/thenathanjones/muro/Muro-0.1.msi) which is the latest I've bothered to produce.
+Simplest way to get started is to grab the installer from [HERE](https://github.com/downloads/thenathanjones/muro/Muro-0.1.1.msi) which is the latest I've bothered to produce.
 Or, if you're feeling up for it, grab the whole lot and build it yourself.  The dependencies are managed by NuGet, and for the moment it's a .NET 4 project, although it's quite possible it will work on earlier versions of the framework.
 
 Configuration
