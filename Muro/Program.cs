@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
+using Muro.Util;
 using Nancy.Hosting.Self;
 using Ninject;
 using Burro;
@@ -57,7 +58,7 @@ namespace Muro
 
             ConfigureBindings();
 
-            _host = new NancyHost(new Uri("http://localhost:4567"));
+            _host = new NancyHost(HostnameUtil.GetUriParams(4567));
             _host.Start();
 
             _core = _kernel.Get<IMuroCore>();
