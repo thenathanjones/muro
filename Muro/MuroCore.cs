@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Security.AccessControl;
-using System.Text;
 using Burro;
-using Ninject;
+using Burro.BuildServers;
 
 namespace Muro
 {
@@ -20,40 +18,53 @@ namespace Muro
 
     public class MuroCore : IMuroCore
     {
-        private readonly IKernel _kernel;
         private readonly IBurroCore _parser;
 
-        public MuroCore(IKernel kernel, IBurroCore parser)
+        public MuroCore(IBurroCore parser)
         {
-            _kernel = kernel;
             _parser = parser;
             PipelineReports = new Dictionary<string, PipelineReport>();
         }
+
+        #region IMuroCore Members
 
         public IDictionary<string, PipelineReport> PipelineReports { get; private set; }
 
         public void Initialise()
         {
-            var assembly = System.Reflection.Assembly.GetEntryAssembly();
-            var baseDir = ".";
+            Assembly assembly = Assembly.GetEntryAssembly();
+            string baseDir = ".";
 
             if (assembly != null)
             {
-                baseDir = System.IO.Path.GetDirectoryName(assembly.Location);
+                baseDir = Path.GetDirectoryName(assembly.Location);
             }
-            var configPath = baseDir + "/muro.yml";
+            string configPath = baseDir + "/muro.yml";
 
             EnsureConfigExists(configPath);
 
             Initialise(configPath);
         }
 
+        public void Initialise(string configFile)
+        {
+            InitialiseParser(configFile);
+
+            RegisterForUpdates();
+        }
+
+        public void Shutdown()
+        {
+        }
+
+        #endregion
+
         private void EnsureConfigExists(string configPath)
         {
             if (!File.Exists(configPath))
             {
-                var resourceAssembly = Assembly.GetExecutingAssembly();
-                var defaultConfig = resourceAssembly.GetManifestResourceStream("Muro.Config.muro.yml");
+                Assembly resourceAssembly = Assembly.GetExecutingAssembly();
+                Stream defaultConfig = resourceAssembly.GetManifestResourceStream("Muro.Config.muro.yml");
                 WriteStreamToFile(defaultConfig, configPath);
 
                 GiveWriteAccessToUsers(configPath);
@@ -64,8 +75,9 @@ namespace Muro
 
         private void GiveWriteAccessToUsers(string configPath)
         {
-            var fileSecurity = File.GetAccessControl(configPath);
-            fileSecurity.AddAccessRule(new FileSystemAccessRule("BUILTIN\\Users", FileSystemRights.Write, AccessControlType.Allow));
+            FileSecurity fileSecurity = File.GetAccessControl(configPath);
+            fileSecurity.AddAccessRule(new FileSystemAccessRule("BUILTIN\\Users", FileSystemRights.Write,
+                                                                AccessControlType.Allow));
             File.SetAccessControl(configPath, fileSecurity);
         }
 
@@ -75,10 +87,10 @@ namespace Muro
 
             try
             {
-                var length = 256;
+                int length = 256;
                 var buffer = new Byte[length];
 
-                var bytesRead = stream.Read(buffer, 0, length);
+                int bytesRead = stream.Read(buffer, 0, length);
                 while (bytesRead > 0)
                 {
                     outputFile.Write(buffer, 0, bytesRead);
@@ -92,13 +104,6 @@ namespace Muro
             }
         }
 
-        public void Initialise(string configFile)
-        {
-            InitialiseParser(configFile);
-
-            RegisterForUpdates();
-        }
-
         private void InitialiseParser(string configFile)
         {
             _parser.Initialise(configFile);
@@ -106,7 +111,7 @@ namespace Muro
 
         private void RegisterForUpdates()
         {
-            foreach (var buildServer in _parser.BuildServers)
+            foreach (IBuildServer buildServer in _parser.BuildServers)
             {
                 buildServer.PipelinesUpdated += HandlePipelineUpdate;
             }
@@ -116,15 +121,10 @@ namespace Muro
 
         private void HandlePipelineUpdate(IEnumerable<PipelineReport> update)
         {
-            foreach (var pipelineReport in update)
+            foreach (PipelineReport pipelineReport in update)
             {
                 PipelineReports[pipelineReport.Name] = pipelineReport;
             }
-        }
-
-        public void Shutdown()
-        {
-            
         }
     }
 }

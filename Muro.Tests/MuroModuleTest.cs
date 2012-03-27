@@ -5,6 +5,7 @@ using System.Text;
 using Burro;
 using Moq;
 using NUnit.Framework;
+using Ninject;
 
 namespace Muro.Tests
 {
@@ -18,7 +19,7 @@ namespace Muro.Tests
             core.SetupGet(c => c.PipelineReports).Returns(new Dictionary<string, PipelineReport>()
                                                               {{"A", new PipelineReport()}});
 
-            var muroModule = new MuroModule(core.Object);
+            var muroModule = new MuroModule(new Mock<IKernel>().Object, core.Object);
             
         }
     }

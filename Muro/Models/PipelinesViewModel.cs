@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Burro;
+using Ninject;
+using Ninject.Parameters;
 
 namespace Muro.Models
 {
     public class PipelinesViewModel
     {
-        public PipelinesViewModel(IEnumerable<PipelineReport> pipelines)
+        private readonly IKernel _kernel;
+
+        public PipelinesViewModel(IKernel kernel, IEnumerable<PipelineReport> pipelines)
         {
-            Pipelines = pipelines.Select(p => new PipelineReportViewModel(p));
+            _kernel = kernel;
+            Pipelines = pipelines.Select(p => _kernel.Get<PipelineReportViewModel>(new ConstructorArgument("pipeline", p)));
         }
 
         public IEnumerable<PipelineReportViewModel> Pipelines { get; set; }

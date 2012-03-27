@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
+using Muro.Models;
 using Muro.Util;
 using Nancy.Hosting.Self;
 using Ninject;
@@ -91,6 +92,8 @@ namespace Muro
             _kernel.Bind<IBurroCore>().To<BurroCore>();
 
             _kernel.Bind<IMuroCore>().ToConstant(_kernel.Get<MuroCore>());
+
+            _kernel.Bind<ITimeSource>().To<RealTimeSource>();
         }
 
         protected override void OnStop()

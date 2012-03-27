@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Burro;
@@ -9,17 +8,19 @@ namespace Muro.Models
     public class PipelineReportViewModel
     {
         private readonly PipelineReport _pipelineReport;
+        private readonly ITimeSource _timeSource;
 
-        public PipelineReportViewModel(PipelineReport pipelineReport)
+        public PipelineReportViewModel(PipelineReport pipelineReport, ITimeSource timeSource)
         {
             _pipelineReport = pipelineReport;
+            _timeSource = timeSource;
         }
 
         public string LastBuildTime
         {
             get
             {
-                var delta = (DateTime.Now - _pipelineReport.LastBuildTime);
+                var delta = (_timeSource.Now - _pipelineReport.LastBuildTime);
 
                 if (delta.TotalSeconds < 60)
                 {
@@ -42,7 +43,7 @@ namespace Muro.Models
                 {
                     return "about " + (int)delta.TotalHours + " hours ago";
                 }
-                return "over " + (int)delta.TotalDays + " days ago";
+                return "over " + (int)delta.TotalDays + " day(s) ago";
             }
         }
 

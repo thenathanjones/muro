@@ -75,6 +75,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RealTimeSource.cs" />
+    <Compile Include="Models\ITimeSource.cs" />
     <Compile Include="Models\PipelineReportViewModel.cs" />
     <Compile Include="Models\PipelinesViewModel.cs" />
     <Compile Include="MuroCore.cs" />

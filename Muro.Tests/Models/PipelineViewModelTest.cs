@@ -6,6 +6,7 @@ using Burro;
 using Moq;
 using Muro.Models;
 using NUnit.Framework;
+using Ninject;
 
 namespace Muro.Tests.Models
 {
@@ -70,7 +71,7 @@ namespace Muro.Tests.Models
         {
             var pipelines = new int[numberOfPipelines].Select(s => new Mock<PipelineReport>().Object).ToArray();
 
-            return new PipelinesViewModel(pipelines);
+            return new PipelinesViewModel(new StandardKernel(), pipelines);
         }
     }
 }
