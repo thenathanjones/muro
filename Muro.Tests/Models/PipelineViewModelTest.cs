@@ -69,9 +69,12 @@ namespace Muro.Tests.Models
 
         private PipelinesViewModel GenerateViewModel(int numberOfPipelines)
         {
+            IKernel kernel = new StandardKernel();
+            kernel.Bind<ITimeSource>().ToConstant(new Mock<ITimeSource>().Object);
+            
             var pipelines = new int[numberOfPipelines].Select(s => new Mock<PipelineReport>().Object).ToArray();
 
-            return new PipelinesViewModel(new StandardKernel(), pipelines);
+            return new PipelinesViewModel(kernel, pipelines);
         }
     }
 }
