@@ -31,7 +31,7 @@ body {
 	font-size: small;
 	margin: 0;
 	font-family: RobotoBold, Helvetica, Arial, "Sans Serif";
-	background-image: url("../Images/bg.png");
+	background: black;
 	background-size: 100%;
     color: white;
     text-shadow: darkslategray 2px 2px 2px;

@@ -20,15 +20,15 @@ namespace Muro.Models
             get
             {
                 var columns = 1;
-                if (Pipelines.Count() > 4)
+                if (Pipelines.Count() >= 4)
                 {
                     columns = 2;
                 }
-                if (Pipelines.Count() > 10)
+                if (Pipelines.Count() >= 10)
                 {
                     columns = 3;
                 }
-                if (Pipelines.Count() > 21)
+                if (Pipelines.Count() >= 21)
                 {
                     columns = 4;
                 }

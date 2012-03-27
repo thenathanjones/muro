@@ -40,6 +40,15 @@ namespace Muro.Tests.Models
         }
 
         [Test]
+        public void CalculatesDimensionsBasedOnNumberPipelines4()
+        {
+            var pipelineVM = GenerateViewModel(4);
+
+            Assert.AreEqual(2, pipelineVM.Dimensions["Rows"]);
+            Assert.AreEqual(2, pipelineVM.Dimensions["Columns"]);
+        }
+
+        [Test]
         public void CalculatesDimensionsBasedOnNumberPipelines5()
         {
             var pipelineVM = GenerateViewModel(5);
